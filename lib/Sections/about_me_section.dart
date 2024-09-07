@@ -13,10 +13,10 @@ class AboutMeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       heightFactor: 1.2,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 150,
+        runSpacing: 100,
         children: [
           SizedBox(
             width: 500,
@@ -58,7 +58,7 @@ class AboutMeSection extends StatelessWidget {
                       'Here are a few technologies I\'ve been working with recently:',
                   color: primaryColor,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Wrap(
@@ -67,21 +67,25 @@ class AboutMeSection extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            width: 150,
-          ),
-          DottedBorder(
-            color: primaryColor,
-            borderType: BorderType.Circle,
-            dashPattern: [50, 30, 25, 15],
-            strokeWidth: 3,
-            child: CircleAvatar(
+          Stack(children: [
+            DottedBorder(
+              color: primaryColor,
+              borderType: BorderType.Circle,
+              dashPattern: const [50, 30, 25, 15],
+              strokeWidth: 3,
+              child: CircleAvatar(
+                radius: 200,
+                backgroundColor: Colors.transparent,
+                foregroundColor: primaryColor,
+              ),
+            ),
+            CircleAvatar(
               radius: 200,
               backgroundColor: Colors.transparent,
               foregroundColor: primaryColor,
               backgroundImage: const AssetImage('assets/images/me.png'),
             ),
-          ),
+          ]),
         ],
       ),
     );

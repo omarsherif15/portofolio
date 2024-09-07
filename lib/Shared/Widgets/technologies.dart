@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/Shared/Widgets/customized_text.dart';
 import 'package:portofolio/Shared/colors.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portofolio/portofolio_layout.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
 
@@ -13,10 +14,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'My Portfolio',
-      home: PortfolioLayout()
+    return ResponsiveSizer(
+      builder:(context, orientation, screenType) =>  const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'My Portfolio',
+        home: PortfolioLayout()
+      ),
     );
   }
 }

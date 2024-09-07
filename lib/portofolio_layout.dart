@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portofolio/Appbar/desktop_appbar.dart';
+import 'package:portofolio/Appbar/mobile_appbar.dart';
 import 'package:portofolio/Sections/about_me_section.dart';
+import 'package:portofolio/Sections/contact.dart';
 import 'package:portofolio/Sections/experience.dart';
 import 'package:portofolio/Sections/hello_section.dart';
 import 'package:portofolio/Sections/projects.dart';
 import 'package:reveal_on_scroll/reveal_on_scroll.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Shared/colors.dart';
-import 'app_bar.dart';
 
 class PortfolioLayout extends StatefulWidget {
   const PortfolioLayout({Key? key}) : super(key: key);
@@ -25,141 +27,160 @@ class PortfolioLayoutState extends State<PortfolioLayout>
   static final hello = GlobalKey();
   static final projects = GlobalKey();
   static final services = GlobalKey();
-
-
+  static final contact = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: MediaQuery.of(context).size.width > 800
-          ? desktopAppBar()
-          : mobileAppBar(context),
-      body: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ScrollToReveal.withAnimation(
-                  scrollController: scrollController,
-                  startOnScroll: true,
-                  animationType: AnimationType.findInRight,
-                  label: 'hello',
-                  child: HelloSection(
+          ? const PreferredSize(
+              preferredSize: Size.fromHeight(90), child: DesktopAppBar())
+          : const PreferredSize(
+              preferredSize: Size.fromHeight(90), child: MobileAppbar()),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HelloSection(
                     key: hello,
                   ),
-                ),
-                ScrollToReveal.withAnimation(
-                  scrollController: scrollController,
-                  startOnScroll: false,
-                  animationType: AnimationType.findInRight,
-                  label: 'about',
-                  child: AboutMeSection(
-                    key: aboutMe,
+                  ScrollToReveal.withAnimation(
+                    scrollController: scrollController,
+                    startOnScroll: false,
+                    reflectPosition: 0,
+                    animationType: AnimationType.fadeInDown,
+                    label: 'about',
+                    child: AboutMeSection(
+                      key: aboutMe,
+                    ),
                   ),
-                ),
-                ScrollToReveal.withAnimation(
-                  scrollController: scrollController,
-                  startOnScroll: true,
-                  animationType: AnimationType.findInRight,
-                  label: 'exp',
-                  child: ExperienceSection(
-                    key: services,
+                  ScrollToReveal.withAnimation(
+                    scrollController: scrollController,
+                    startOnScroll: true,
+                    animationType: AnimationType.findInRight,
+                    label: 'exp',
+                    child: ExperienceSection(
+                      key: services,
+                    ),
                   ),
-                ),
-                ScrollToReveal.withAnimation(
-                  scrollController: scrollController,
-                  startOnScroll: true,
-                  animationType: AnimationType.findInRight,
-                  label: 'project',
-                  child: ProjectsSection(
-                    key: projects,
+                  ScrollToReveal.withAnimation(
+                    scrollController: scrollController,
+                    startOnScroll: true,
+                    animationType: AnimationType.findInRight,
+                    label: 'project',
+                    child: ProjectsSection(
+                      key: projects,
+                    ),
                   ),
-                ),
-              ],
+                  ScrollToReveal.withAnimation(
+                    scrollController: scrollController,
+                    startOnScroll: true,
+                    animationType: AnimationType.fadeIn,
+                    label: 'contact',
+                    child: Contactus(
+                      key: contact,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-              bottom: 0,
-              left: 30,
-              child: Column(
-                children: [
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(
-                      FontAwesomeIcons.github,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(FontAwesomeIcons.linkedinIn,
-                        color: Colors.white),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(FontAwesomeIcons.instagram,
-                        color: Colors.white),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(FontAwesomeIcons.facebookF,
-                        color: Colors.white),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 60,
-                    color: Colors.grey,
-                    width: 1,
-                  )
-                ],
-              )),
-          Positioned(
-              bottom: 0,
-              right: 30,
-              child: Column(
-                children: [
-                  RotatedBox(
-                    quarterTurns: 1,
-                    child: TextButton(
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                      child: Text(
-                        'OmarSherifMetwaly@gmail.com',
-                        style:
-                            GoogleFonts.dosis(color: Colors.grey, fontSize: 18),
+            Visibility(
+              visible: MediaQuery.sizeOf(context).width > 800,
+              child: Positioned(
+                  bottom: 0,
+                  left: 30,
+                  child: Column(
+                    children: [
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(
+                          FontAwesomeIcons.github,
+                          color: Colors.white,
+                        ),
+                        onPressed: () async => await launchUrl(
+                            Uri.parse('https://github.com/omarsherif15')),
                       ),
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 60,
-                    color: Colors.grey,
-                    width: 1,
-                  )
-                ],
-              )),
-        ],
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(FontAwesomeIcons.linkedinIn,
+                            color: Colors.white),
+                        onPressed: () async => await launchUrl(Uri.parse(
+                            'https://www.linkedin.com/in/omarshekoo/')),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(FontAwesomeIcons.instagram,
+                            color: Colors.white),
+                        onPressed: () async => await launchUrl(Uri.parse(
+                            'https://www.instagram.com/omar_sherif20/')),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(FontAwesomeIcons.facebookF,
+                            color: Colors.white),
+                        onPressed: () async => await launchUrl(Uri.parse(
+                            'https://www.facebook.com/profile.php?id=100007026016499')),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: 60,
+                        color: Colors.grey,
+                        width: 1,
+                      )
+                    ],
+                  )),
+            ),
+            Visibility(
+              visible: MediaQuery.sizeOf(context).width > 800,
+              child: Positioned(
+                  bottom: 0,
+                  right: 30,
+                  child: Column(
+                    children: [
+                      RotatedBox(
+                        quarterTurns: 1,
+                        child: TextButton(
+                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                          child: Text(
+                            'OmarSherifMetwaly@gmail.com',
+                            style: GoogleFonts.dosis(
+                                color: Colors.grey, fontSize: 18),
+                          ),
+                          onPressed: () async => await launchUrl(
+                              Uri.parse('mailto:OmarSherifMetwaly@gmail.com')),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: 60,
+                        color: Colors.grey,
+                        width: 1,
+                      )
+                    ],
+                  )),
+            ),
+          ],
+        ),
       ),
     );
     // Scaffold(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/Shared/colors.dart';
+import 'package:typing_text/typing_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelloSection extends StatelessWidget {
   const HelloSection({Key? key}) : super(key: key);
@@ -11,7 +13,7 @@ class HelloSection extends StatelessWidget {
     return Center(
       heightFactor: 2.3,
       widthFactor: 2,
-      child: Container(
+      child: SizedBox(
         width: 600,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -22,8 +24,8 @@ class HelloSection extends StatelessWidget {
               style: GoogleFonts.dosis(
                   color: primaryColor, fontSize: 20, letterSpacing: 2),
             ),
-            Text(
-              'Omar Sherif',
+            TypingText(
+              words: const ['Omar Sherif'],
               style: GoogleFonts.dosis(
                   color: Colors.white,
                   fontSize: 70,
@@ -40,13 +42,14 @@ class HelloSection extends StatelessWidget {
               height: 20,
             ),
             OutlinedButton(
-                onPressed: () {},
+                onPressed: () async => launchUrl(Uri.parse(
+                    'https://drive.usercontent.google.com/download?id=1Zb-RADf8eRS6zWmLJjdkVIio7Tts8oR9&export=download&authuser=0&confirm=t&uuid=b307c846-fd82-47d6-9152-e2ce96ffb29b&at=AO7h07d3Hou_45HM4dkvqMP6hklg:1725140369244')),
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     side: BorderSide(color: primaryColor),
                     padding:
-                        EdgeInsets.symmetric(vertical: 17, horizontal: 20)),
+                        const EdgeInsets.symmetric(vertical: 17, horizontal: 20)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -54,7 +57,7 @@ class HelloSection extends StatelessWidget {
                       FontAwesomeIcons.download,
                       color: primaryColor,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     Text('Download CV',

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/Shared/Widgets/projectWidget.dart';
@@ -45,18 +46,64 @@ class ProjectsSection extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+
+            // Creating Each Project Widget
+
             SizedBox(
                 width: MediaQuery.sizeOf(context).width * 0.7,
                 child: ListView.builder(
-                  itemBuilder: (context, index) =>
-                      ProjectWidget(rtl: index.isOdd),
+                  itemBuilder: (context, index) => ProjectWidget(
+                    rtl: index.isOdd,
+                    project: getProjects()[index],
+                  ),
                   itemCount: 4,
                   shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
                 ))
           ],
         ),
       ),
     );
   }
+
+  List<Map<String, dynamic>> getProjects() => [
+        {
+          'title': 'Avocado',
+          'subtitle': 'Lawyer Office Management System',
+          'image': 'assets/Mockups/Avocado Mockup.jpg',
+          'description':
+              '• The mobile app allows you to view and easy access to the lawyer\'s data. Support English and Arabic\n'
+                  '• View Lawyers\' Cases and everything related. (Sessions, Investigations, attachments, etc...)\n'
+                  '• Previously added legal library (as PDFs), Courts profile (Plus GPS Direction)\n',
+          'github': 'https://github.com/omarsherif15/avocado',
+        },
+        {
+          'title': 'Vegan Market',
+          'subtitle': 'E-Commerce App',
+          'image': 'assets/Mockups/VeganMarket.jpg',
+          'description':
+              '• Built a grocery app with Stripe payments, using Firebase backend\n'
+                  '• Web admin panel for managing orders and products.',
+          'github': 'https://github.com/omarsherif15/VeganMarket',
+        },
+        {
+          'title': 'Friends',
+          'subtitle': 'Social Media App',
+          'image': 'assets/Mockups/Friends.jpg',
+          'description':
+              '• Localized Social App (Facebook Clone) using Firebase, Light & Dark mode\n'
+                  '• Create & Share posts, likes & comment (text and Image)\n'
+                  '• Real-time messages (Chat) and Notifications',
+          'github': 'https://github.com/omarsherif15/Friends',
+        },
+        {
+          'title': 'ShopMart',
+          'subtitle': 'E-Commerce App',
+          'image': 'assets/Mockups/ShopMart.jpg',
+          'description':
+              '• Built a Simple E-Commerce Shopping App using Rest API\n'
+                  '• CRUD Account, Address, Cart, Favorites\n'
+                  '• Categories & Products updated continuously, Search Products',
+          'github': 'https://github.com/omarsherif15/ShopMart',
+        }
+      ];
 }
