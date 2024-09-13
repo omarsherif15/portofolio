@@ -33,6 +33,93 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <style>
+    body{
+      background-color: #0d192d;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+    }
+
+    .main-content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      transition: opacity .0.4s ease-in-out;
+    }
+
+    img {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+
+.loader {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+  animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 60%;
+  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+}
+
+.loader span:nth-child(1) {
+  filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+  filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+  filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+  filter: blur(50px);
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #0d192d;
+  border-radius: 50%;
+}
+  </style>
   <script src="flutter_bootstrap.js" async></script>
+  <div class="main-content">
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <img src="logo.png" alt="logo">
+    
+  </div>
 </body>
 </html>

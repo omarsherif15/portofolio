@@ -39,7 +39,7 @@ class PortfolioLayoutState extends State<PortfolioLayout>
           : const PreferredSize(
               preferredSize: Size.fromHeight(90), child: MobileAppbar()),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(30.0),
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [

@@ -24,7 +24,8 @@ class _ProjectWidgetState extends State<ProjectWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsetsDirectional.only(start: 50, top: 50, bottom: 50),
+        padding:
+            const EdgeInsetsDirectional.only(start: 50, top: 50, bottom: 50),
         width: MediaQuery.sizeOf(context).width * 0.5,
         child: MediaQuery.sizeOf(context).width > 800
             ? Stack(
@@ -62,11 +63,11 @@ class _ProjectWidgetState extends State<ProjectWidget> {
                           CustomizedText(
                             text: widget.project['title'],
                             color: primaryColor,
+                            fontSize: 20,
                           ),
                           CustomizedText(
                             text: widget.project['subtitle'],
                             color: white,
-                            fontSize: 23,
                             fontWeight: FontWeight.bold,
                           ),
                           Card(
@@ -76,6 +77,7 @@ class _ProjectWidgetState extends State<ProjectWidget> {
                               width: 600,
                               child: CustomizedText(
                                 text: widget.project['description'],
+                                fontSize: 14,
                               ),
                             ),
                           ),

@@ -3,37 +3,21 @@ import 'package:portofolio/Shared/Widgets/customized_text.dart';
 import 'package:portofolio/Shared/colors.dart';
 
 class Technologies extends StatelessWidget {
-  const Technologies({Key? key}) : super(key: key);
+  const Technologies({Key? key, required this.title}) : super(key: key);
 
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.arrow_right,color: primaryColor,),
-            const CustomizedText(text: 'Flutter',),
-          ],
-        ),  const SizedBox(width: 50,),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-
-          children: [
-            Icon(Icons.arrow_right,color: primaryColor,),
-            const CustomizedText(text: 'Firebase',),
-          ],
-        ),  const SizedBox(width: 50,),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-
-          children: [
-            Icon(Icons.arrow_right,color: primaryColor,),
-            const CustomizedText(text: 'Bloc, Provider',),
-          ],
+        Icon(
+          Icons.arrow_right,
+          color: primaryColor,
+        ),
+        CustomizedText(
+          text: title,
         ),
       ],
     );

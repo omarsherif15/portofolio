@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/Shared/Widgets/projectWidget.dart';
 import 'package:portofolio/Shared/colors.dart';
+import 'package:portofolio/main.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({Key? key}) : super(key: key);
@@ -39,12 +40,12 @@ class ProjectsSection extends StatelessWidget {
                 Container(
                   height: 1,
                   color: Colors.grey[200],
-                  width: 200,
+                  width: 30.sp,
                 )
               ],
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: 10.h,
             ),
 
             // Creating Each Project Widget
@@ -56,7 +57,7 @@ class ProjectsSection extends StatelessWidget {
                     rtl: index.isOdd,
                     project: getProjects()[index],
                   ),
-                  itemCount: 4,
+                  itemCount: getProjects().length,
                   shrinkWrap: true,
                 ))
           ],
@@ -65,7 +66,7 @@ class ProjectsSection extends StatelessWidget {
     );
   }
 
-  List<Map<String, dynamic>> getProjects() => [
+  List<Map<String, dynamic>> getProjects() => const [
         {
           'title': 'Avocado',
           'subtitle': 'Lawyer Office Management System',
@@ -73,7 +74,7 @@ class ProjectsSection extends StatelessWidget {
           'description':
               '• The mobile app allows you to view and easy access to the lawyer\'s data. Support English and Arabic\n'
                   '• View Lawyers\' Cases and everything related. (Sessions, Investigations, attachments, etc...)\n'
-                  '• Previously added legal library (as PDFs), Courts profile (Plus GPS Direction)\n',
+                  '• Previously added legal library (as PDFs), Courts profile (Plus GPS Direction)',
           'github': 'https://github.com/omarsherif15/avocado',
         },
         {

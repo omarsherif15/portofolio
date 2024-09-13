@@ -5,6 +5,8 @@ import 'package:portofolio/Shared/Widgets/customized_text.dart';
 import 'package:portofolio/Shared/Widgets/technologies.dart';
 import 'package:portofolio/Shared/colors.dart';
 import 'package:portofolio/Shared/constants.dart';
+import 'package:portofolio/main.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class AboutMeSection extends StatelessWidget {
         runSpacing: 100,
         children: [
           SizedBox(
-            width: 500,
+            width: MediaQuery.of(context).size.width > 800 ? 500 : 300,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,13 +47,14 @@ class AboutMeSection extends StatelessWidget {
                     Container(
                       height: 1,
                       color: Colors.grey[200],
-                      width: 200,
+                      width: 50.sp,
                     )
                   ],
                 ),
                 CustomizedText(
                   text: aboutMe,
                   color: Colors.grey.shade50,
+                  //fontSize: 14.sp,
                 ),
                 CustomizedText(
                   text:
@@ -63,7 +66,11 @@ class AboutMeSection extends StatelessWidget {
                 ),
                 Wrap(
                     spacing: 100,
-                    children: List.generate(2, (index) => const Technologies()))
+                    children: List.generate(
+                        getTechnologies().length,
+                        (index) => Technologies(
+                              title: getTechnologies()[index],
+                            )))
               ],
             ),
           ),
@@ -90,4 +97,14 @@ class AboutMeSection extends StatelessWidget {
       ),
     );
   }
+
+  List<String> getTechnologies() => [
+        'Flutter',
+        'Dart',
+        'Bloc, Provider State Management',
+        'Firebase [Database , Cloud Storage , Auth]',
+        'Git , Github',
+        'Payment Gateways',
+        'MVVM Architecture',
+      ];
 }

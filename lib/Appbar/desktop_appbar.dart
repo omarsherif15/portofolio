@@ -58,10 +58,6 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
           const SizedBox(
             width: 15,
           ),
-          AppBarButton(
-            title: 'Contact',
-            scrollContext: PortfolioLayoutState.contact.currentContext!,
-          ),
           const SizedBox(
             width: 15,
           ),

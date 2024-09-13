@@ -14,7 +14,7 @@ class ExperienceSection extends StatelessWidget {
       heightFactor: 2.3,
       widthFactor: 2,
       child: SizedBox(
-        width: 500,
+        width: 700,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,7 +30,7 @@ class ExperienceSection extends StatelessWidget {
                   ' Where I\'ve Worked',
                   style: GoogleFonts.dosis(
                       color: Colors.white,
-                      fontSize: 13.sp,
+                      fontSize: 15.sp,
                       letterSpacing: 2,
                       fontWeight: FontWeight.bold),
                 ),
