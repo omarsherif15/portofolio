@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) => const MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'My Portfolio',
+              title: 'Omar Sherif',
               home: PortfolioLayout())
           .animate()
           .fadeIn(),
