@@ -9,37 +9,98 @@ class ProjectWidget extends StatelessWidget {
   const ProjectWidget({
     Key? key,
     required this.rtl,
-    required this.project,
-    required this.animation,
+    required this.project, required this.animation,
   }) : super(key: key);
   final bool rtl;
-  final Animation<double> animation;
+  final Animation<double> animation ;
   final Map<String, dynamic> project;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-Widget animatedProject(BuildContext context, bool rtl,
-    Animation<double> animation, Map<String, dynamic> project) {
-  return Container(
-      padding: const EdgeInsetsDirectional.only(start: 50, top: 50, bottom: 50),
-      width: MediaQuery.sizeOf(context).width * 0.5,
-      child: MediaQuery.sizeOf(context).width > 800
-          ? Stack(
-              alignment: rtl
-                  ? AlignmentDirectional.centerEnd
-                  : AlignmentDirectional.centerStart,
-              fit: StackFit.passthrough,
-              children: [
-                SlideTransition(
-                  position: Tween<Offset>(
-                    begin: rtl ? const Offset(-1, 0) : const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: Container(
+    return Container(
+        padding:
+            const EdgeInsetsDirectional.only(start: 50, top: 50, bottom: 50),
+        width: MediaQuery.sizeOf(context).width * 0.5,
+        child: MediaQuery.sizeOf(context).width > 800
+            ? Stack(
+                alignment: rtl
+                    ? AlignmentDirectional.centerEnd
+                    : AlignmentDirectional.centerStart,
+                fit: StackFit.passthrough,
+                children: [
+                  SlideTransition(
+                    position: Tween<Offset>(
+                      begin: rtl ? const Offset(-1, 0) : const Offset(1, 0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: Container(
+                      alignment: rtl
+                          ? AlignmentDirectional.centerStart
+                          : AlignmentDirectional.centerEnd,
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 350,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image(
+                          image: AssetImage(project['image']),
+                          height: 350,
+                          width: 500,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: rtl ? 0 : 400,
+                    left: rtl ? 400 : 0,
+                    child: SlideTransition(
+                       position: Tween<Offset>(
+                      begin: rtl ? const Offset(1, 0) : const Offset(-1, 0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                      child: Column(
+                          crossAxisAlignment: rtl
+                              ? CrossAxisAlignment.end
+                              : CrossAxisAlignment.start,
+                          children: [
+                            CustomizedText(
+                              text: project['title'],
+                              color: primaryColor,
+                              fontSize: 20,
+                            ),
+                            CustomizedText(
+                              text: project['subtitle'],
+                              color: white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            Card(
+                              color: HexColor('#112240'),
+                              child: Container(
+                                padding: const EdgeInsets.all(15),
+                                width: 600,
+                                child: CustomizedText(
+                                  text: project['description'],
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: () async =>
+                                    launchUrl(Uri.parse(project['github'])),
+                                icon: Icon(
+                                  Icons.link,
+                                  size: 30,
+                                  color: primaryColor,
+                                ))
+                          ]),
+                    ),
+                  ),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
                     alignment: rtl
                         ? AlignmentDirectional.centerStart
                         : AlignmentDirectional.centerEnd,
@@ -55,102 +116,36 @@ Widget animatedProject(BuildContext context, bool rtl,
                       ),
                     ),
                   ),
-                ),
-                Positioned(
-                  right: rtl ? 0 : 400,
-                  left: rtl ? 400 : 0,
-                  child: SlideTransition(
-                    position: Tween<Offset>(
-                      begin: rtl ? const Offset(1, 0) : const Offset(-1, 0),
-                      end: Offset.zero,
-                    ).animate(animation),
-                    child: Column(
-                        crossAxisAlignment: rtl
-                            ? CrossAxisAlignment.end
-                            : CrossAxisAlignment.start,
-                        children: [
-                          CustomizedText(
-                            text: project['title'],
-                            color: primaryColor,
-                            fontSize: 20,
-                          ),
-                          CustomizedText(
-                            text: project['subtitle'],
-                            color: white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          Card(
-                            color: HexColor('#112240'),
-                            child: Container(
-                              padding: const EdgeInsets.all(15),
-                              width: 600,
-                              child: CustomizedText(
-                                text: project['description'],
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                              onPressed: () async =>
-                                  launchUrl(Uri.parse(project['github'])),
-                              icon: Icon(
-                                Icons.link,
-                                size: 30,
-                                color: primaryColor,
-                              ))
-                        ]),
+                  CustomizedText(
+                    text: project['title'],
+                    color: primaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-              ],
-            )
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  alignment: rtl
-                      ? AlignmentDirectional.centerStart
-                      : AlignmentDirectional.centerEnd,
-                  width: MediaQuery.sizeOf(context).width,
-                  height: 350,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image(
-                      image: AssetImage(project['image']),
-                      height: 350,
-                      width: 500,
-                      fit: BoxFit.cover,
+                  CustomizedText(
+                    text: project['subtitle'],
+                    color: white,
+                    fontSize: 16,
+                  ),
+                  Card(
+                    color: HexColor('#112240'),
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      width: 600,
+                      child: CustomizedText(
+                        text: project['description'],
+                      ),
                     ),
                   ),
-                ),
-                CustomizedText(
-                  text: project['title'],
-                  color: primaryColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomizedText(
-                  text: project['subtitle'],
-                  color: white,
-                  fontSize: 16,
-                ),
-                Card(
-                  color: HexColor('#112240'),
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    width: 600,
-                    child: CustomizedText(
-                      text: project['description'],
-                    ),
-                  ),
-                ),
-                IconButton(
-                    onPressed: () async =>
-                        launchUrl(Uri.parse(project['github'])),
-                    icon: Icon(
-                      Icons.link,
-                      size: 20.sp,
-                      color: primaryColor,
-                    )),
-              ],
-            ));
+                  IconButton(
+                      onPressed: () async =>
+                          launchUrl(Uri.parse(project['github'])),
+                      icon: Icon(
+                        Icons.link,
+                        size: 20.sp,
+                        color: primaryColor,
+                      )),
+                ],
+              ));
+  }
 }
