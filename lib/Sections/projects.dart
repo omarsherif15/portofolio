@@ -54,10 +54,11 @@ class ProjectsSection extends StatelessWidget {
             SizedBox(
                 width: MediaQuery.sizeOf(context).width * 0.7,
                 child: LiveList.options(
-                  itemBuilder: (context, index, animation) => ProjectWidget(
-                    rtl: index.isOdd,
-                    project: getProjects()[index],
-                    animation: animation,
+                  itemBuilder: (context, index, animation) => animatedProject(
+                    context,
+                    index.isOdd,
+                    animation,
+                    getProjects()[index],
                   ),
                   itemCount: getProjects().length,
                   shrinkWrap: true,
