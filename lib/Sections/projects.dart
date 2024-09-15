@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/Shared/Widgets/projectWidget.dart';
@@ -52,13 +53,17 @@ class ProjectsSection extends StatelessWidget {
 
             SizedBox(
                 width: MediaQuery.sizeOf(context).width * 0.7,
-                child: ListView.builder(
-                  itemBuilder: (context, index) => ProjectWidget(
+                child: LiveList.options(
+                  itemBuilder: (context, index, animation) => ProjectWidget(
                     rtl: index.isOdd,
                     project: getProjects()[index],
+                    animation: animation,
                   ),
                   itemCount: getProjects().length,
                   shrinkWrap: true,
+                  options: const LiveOptions(
+                      reAnimateOnVisibility: true,
+                      showItemDuration: Duration(milliseconds: 500)),
                 ))
           ],
         ),

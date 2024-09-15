@@ -7,6 +7,7 @@ import 'package:portofolio/Shared/colors.dart';
 import 'package:portofolio/Shared/constants.dart';
 import 'package:portofolio/main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:typing_text/typing_text.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({Key? key}) : super(key: key);
@@ -55,6 +56,33 @@ class AboutMeSection extends StatelessWidget {
                   text: aboutMe,
                   color: Colors.grey.shade50,
                   //fontSize: 14.sp,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    CustomizedText(
+                      text: 'I Build ',
+                    ),
+                    Expanded(
+                      child: TypingText(
+                        words: const [
+                          'Awesome Mobile Apps',
+                          'Awesome Websites',
+                          'Awesome UI/UX'
+                        ],
+                        style: GoogleFonts.dosis(
+                            color: primaryColor,
+                            fontSize: 14.sp,
+                            letterSpacing: 2,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 CustomizedText(
                   text:
