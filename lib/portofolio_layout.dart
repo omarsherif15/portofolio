@@ -51,15 +51,8 @@ class PortfolioLayoutState extends State<PortfolioLayout>
                   HelloSection(
                     key: hello,
                   ),
-                  ScrollToReveal.withAnimation(
-                    scrollController: scrollController,
-                    startOnScroll: false,
-                    reflectPosition: 0,
-                    animationType: AnimationType.fadeInDown,
-                    label: 'about',
-                    child: AboutMeSection(
-                      key: aboutMe,
-                    ),
+                  AboutMeSection(
+                    key: aboutMe,
                   ),
                   ScrollToReveal.withAnimation(
                     scrollController: scrollController,

@@ -62,8 +62,9 @@ class AboutMeSection extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    CustomizedText(
+                    const CustomizedText(
                       text: 'I Build ',
+                      fontSize: 15,
                     ),
                     Expanded(
                       child: TypingText(

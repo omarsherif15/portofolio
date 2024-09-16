@@ -9,10 +9,11 @@ class ProjectWidget extends StatelessWidget {
   const ProjectWidget({
     Key? key,
     required this.rtl,
-    required this.project, required this.animation,
+    required this.project,
+    required this.animation,
   }) : super(key: key);
   final bool rtl;
-  final Animation<double> animation ;
+  final Animation<double> animation;
   final Map<String, dynamic> project;
 
   @override
@@ -54,10 +55,10 @@ class ProjectWidget extends StatelessWidget {
                     right: rtl ? 0 : 400,
                     left: rtl ? 400 : 0,
                     child: SlideTransition(
-                       position: Tween<Offset>(
-                      begin: rtl ? const Offset(1, 0) : const Offset(-1, 0),
-                      end: Offset.zero,
-                    ).animate(animation),
+                      position: Tween<Offset>(
+                        begin: rtl ? const Offset(1, 0) : const Offset(-1, 0),
+                        end: Offset.zero,
+                      ).animate(animation),
                       child: Column(
                           crossAxisAlignment: rtl
                               ? CrossAxisAlignment.end
@@ -100,19 +101,22 @@ class ProjectWidget extends StatelessWidget {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    alignment: rtl
-                        ? AlignmentDirectional.centerStart
-                        : AlignmentDirectional.centerEnd,
-                    width: MediaQuery.sizeOf(context).width,
-                    height: 350,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image(
-                        image: AssetImage(project['image']),
-                        height: 350,
-                        width: 500,
-                        fit: BoxFit.cover,
+                  SlideTransition(
+                    position: Tween<Offset>(
+                      begin: rtl ? const Offset(2, 0) : const Offset(-2, 0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 300,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image(
+                          image: AssetImage(project['image']),
+                          height: 300,
+                          width: 500,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

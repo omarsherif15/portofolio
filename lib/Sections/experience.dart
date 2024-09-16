@@ -11,7 +11,7 @@ class ExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      heightFactor: 2.3,
+      heightFactor: MediaQuery.sizeOf(context).width > 800 ? 2.3 : 1.5,
       widthFactor: 2,
       child: SizedBox(
         width: 700,
