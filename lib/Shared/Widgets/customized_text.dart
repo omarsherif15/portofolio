@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class CustomizedText extends StatelessWidget {
-  const CustomizedText({
+class CustomizedNormalText extends StatelessWidget {
+  const CustomizedNormalText({
     Key? key,
     required this.text,
     this.color = Colors.white,

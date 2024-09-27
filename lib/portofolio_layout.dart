@@ -3,12 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/Appbar/desktop_appbar.dart';
 import 'package:portofolio/Appbar/mobile_appbar.dart';
-import 'package:portofolio/Sections/about_me_section.dart';
-import 'package:portofolio/Sections/contact.dart';
-import 'package:portofolio/Sections/experience.dart';
-import 'package:portofolio/Sections/hello_section.dart';
-import 'package:portofolio/Sections/projects.dart';
-import 'package:reveal_on_scroll/reveal_on_scroll.dart';
+import 'package:portofolio/Features/Home/Sections/Services&Skills/Screens/services_skills.dart';
+import 'package:portofolio/Features/Home/Sections/about_me_section.dart';
+import 'package:portofolio/Features/Home/Sections/contact.dart';
+import 'package:portofolio/Features/Home/Sections/experience.dart';
+import 'package:portofolio/Features/Home/Sections/hello_section.dart';
+import 'package:portofolio/Features/Home/Sections/projects.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'Shared/colors.dart';
@@ -27,6 +28,7 @@ class PortfolioLayoutState extends State<PortfolioLayout>
   static final hello = GlobalKey();
   static final projects = GlobalKey();
   static final services = GlobalKey();
+  static final experience = GlobalKey();
   static final contact = GlobalKey();
 
   @override
@@ -51,35 +53,35 @@ class PortfolioLayoutState extends State<PortfolioLayout>
                   HelloSection(
                     key: hello,
                   ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   AboutMeSection(
                     key: aboutMe,
                   ),
-                  ScrollToReveal.withAnimation(
-                    scrollController: scrollController,
-                    startOnScroll: true,
-                    animationType: AnimationType.findInRight,
-                    label: 'exp',
-                    child: ExperienceSection(
-                      key: services,
-                    ),
+                  SizedBox(
+                    height: 20.h,
                   ),
-                  ScrollToReveal.withAnimation(
-                    scrollController: scrollController,
-                    startOnScroll: true,
-                    animationType: AnimationType.findInRight,
-                    label: 'project',
-                    child: ProjectsSection(
-                      key: projects,
-                    ),
+                  ServicesAndSkills(
+                    key: services,
                   ),
-                  ScrollToReveal.withAnimation(
-                    scrollController: scrollController,
-                    startOnScroll: true,
-                    animationType: AnimationType.fadeIn,
-                    label: 'contact',
-                    child: Contactus(
-                      key: contact,
-                    ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  ExperienceSection(
+                    key: experience,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  ProjectsSection(
+                    key: projects,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Contactus(
+                    key: contact,
                   ),
                 ],
               ),

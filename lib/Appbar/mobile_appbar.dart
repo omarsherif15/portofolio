@@ -116,7 +116,7 @@ class _AppBarButtonState extends State<_AppBarButton> {
           padding: isHovered
               ? const EdgeInsets.only(bottom: 10)
               : const EdgeInsets.all(0),
-          child: CustomizedText(
+          child: CustomizedNormalText(
             text: widget.title,
             color: isHovered ? primaryColor : Colors.white,
             fontSize: 18,

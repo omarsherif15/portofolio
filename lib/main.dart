@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portofolio/portofolio_layout.dart';
+import 'package:portofolio/splash_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
@@ -14,12 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(
-      builder: (context, orientation, screenType) => const MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Omar Sherif',
-              home: PortfolioLayout())
-          .animate()
-          .fadeIn(),
+      builder: (context, orientation, screenType) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Omar Sherif',
+        home: SplashScreen(),
+      ).animate().fadeIn(),
     );
   }
 }

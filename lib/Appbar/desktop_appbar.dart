@@ -45,14 +45,21 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
             width: 15,
           ),
           AppBarButton(
-            title: '02. Experience',
+            title: '02. Services',
             scrollContext: PortfolioLayoutState.services.currentContext!,
           ),
           const SizedBox(
             width: 15,
           ),
           AppBarButton(
-            title: '03. Projects',
+            title: '03. Experience',
+            scrollContext: PortfolioLayoutState.experience.currentContext!,
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          AppBarButton(
+            title: '04. Projects',
             scrollContext: PortfolioLayoutState.projects.currentContext!,
           ),
           const SizedBox(
